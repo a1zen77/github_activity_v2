@@ -2,6 +2,7 @@
 //
 // Displays a single repository.
 // Receives one repo node from the repositories.nodes array.
+import './RepoCard.css'
 
 export function RepoCard({ repo }) {
   return (

@@ -2,8 +2,25 @@
 //
 // Displays a GitHub user's public profile information.
 // Receives the `userData` object directly from the hook.
+import './ProfileCard.css'
 
 export function ProfileCard({ user }) {
+  // Show skeleton while loading
+  if (isLoading) {
+    return (
+      <div className="profile-card profile-card--skeleton">
+        <div className="profile-top">
+          <div className="skeleton skeleton-avatar" />
+          <div className="profile-identity" style={{ flex: 1 }}>
+            <div className="skeleton skeleton-line skeleton-w-40" />
+            <div className="skeleton skeleton-line skeleton-w-60" />
+            <div className="skeleton skeleton-line skeleton-w-80" />
+          </div>
+        </div>
+      </div>
+    )
+  }
+  
   if (!user) return null
 
   return (

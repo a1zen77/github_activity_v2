@@ -2,7 +2,7 @@
 //
 // Controlled input + submit button.
 // Calls onSearch(username) when the form is submitted.
-
+import './SearchBar.css'
 import { useState } from 'react'
 
 export function SearchBar({ onSearch, isLoading }) {

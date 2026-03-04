@@ -1,0 +1,126 @@
+/* ProfileCard.css */
+
+.profile-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  animation: fadeIn 200ms ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Top row: avatar + identity ── */
+.profile-top {
+  display: flex;
+  gap: var(--space-5);
+  align-items: flex-start;
+}
+
+.profile-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.profile-identity {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.profile-name {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-login {
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+}
+
+.profile-bio {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-top: var(--space-1);
+  line-height: 1.5;
+}
+
+/* ── Stats row ── */
+.profile-stats {
+  display: flex;
+  gap: var(--space-6);
+  border-top: 1px solid var(--color-border-muted);
+  border-bottom: 1px solid var(--color-border-muted);
+  padding: var(--space-4) 0;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stat-value {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.stat-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── Meta row: company, location, email, twitter ── */
+.profile-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+}
+
+.meta-item {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.meta-link { color: var(--color-accent); }
+
+/* ── Skeleton ── */
+.profile-card--skeleton .skeleton-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+}
+
+.profile-card--skeleton .skeleton-line {
+  height: 14px;
+  margin-bottom: var(--space-2);
+}
+
+.skeleton-w-40 { width: 40%; }
+.skeleton-w-60 { width: 60%; }
+.skeleton-w-80 { width: 80%; }
+
+@media (max-width: 600px) {
+  .profile-top   { flex-direction: column; }
+  .profile-stats { gap: var(--space-4); }
+}

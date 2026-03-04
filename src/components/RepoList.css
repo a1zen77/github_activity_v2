@@ -1,0 +1,85 @@
+/* RepoList.css */
+
+.repo-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.repo-list-title {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.repo-list-count {
+  font-size: var(--text-xs);
+  color: var(--color-text-subtle);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ── Grid ── */
+.repo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+
+/* ── Skeleton cards ── */
+.repo-card-skeleton {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.repo-card-skeleton .skeleton-line {
+  height: 12px;
+}
+
+/* ── Footer: Load More / end state ── */
+.repo-list-footer {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--space-2);
+}
+
+.load-more-button {
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  padding: var(--space-3) var(--space-8);
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.load-more-button:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.load-more-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.end-of-list {
+  font-size: var(--text-xs);
+  color: var(--color-text-subtle);
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 600px) {
+  .repo-grid { grid-template-columns: 1fr; }
+}
