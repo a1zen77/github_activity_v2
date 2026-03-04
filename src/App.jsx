@@ -46,11 +46,11 @@ function App() {
         {/* Profile */}
         <ProfileCard user={userData} />
 
-        {/* Repos error */}
-        {reposError && (
-          <div className="error-message">
-            <strong>Could not load repositories:</strong> {reposError}
-          </div>
+        {/* No repos state — user exists but has no public repos */}
+        {userData && !reposLoading && repos.length === 0 && !reposError && (
+          <p className="empty-state">
+            {userData.login} has no public repositories yet.
+          </p>
         )}
 
         {/* Repo list + pagination */}
