@@ -4,7 +4,7 @@
 // Receives the `userData` object directly from the hook.
 import './ProfileCard.css'
 
-export function ProfileCard({ user }) {
+export function ProfileCard({ user, isLoading }) {
   // Show skeleton while loading
   if (isLoading) {
     return (
