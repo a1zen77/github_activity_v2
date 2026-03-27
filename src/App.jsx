@@ -12,6 +12,7 @@ function App() {
     reposError,
     searchUser,
     loadMoreRepos,
+    reset,
   } = useGitHubSearch()
 
   const isEmptyState = !userData && !userLoading && !userError && !reposLoading && repos.length === 0
@@ -19,8 +20,17 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1 className="app-title">GitHub Explorer</h1>
+        <h1 className="app-title" onClick={reset} style={{ cursor: 'pointer' }}>
+          GitHub Explorer
+        </h1>
         <span className="app-subtitle">Search users · Explore repositories</span>
+
+        {/* Back button — only visible after a search */}
+        {!isEmptyState && (
+          <button className="back-button" onClick={reset}>
+            ← Home
+          </button>
+        )}
       </header>
 
       <main className="app-main">

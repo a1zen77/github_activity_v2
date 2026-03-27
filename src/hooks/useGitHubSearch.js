@@ -12,15 +12,15 @@ const REPOS_PER_PAGE = 6
 export function useGitHubSearch() {
 
   // ── User state ──────────────────────────────────────────────
-  const [userData, setUserData]       = useState(null)
-  const [userLoading, setUserLoading] = useState(false)
-  const [userError, setUserError]     = useState(null)
+  const [userData, setUserData]         = useState(null)
+  const [userLoading, setUserLoading]   = useState(false)
+  const [userError, setUserError]       = useState(null)
 
   // ── Repo state ───────────────────────────────────────────────
-  const [repos, setRepos]             = useState([])
-  const [pageInfo, setPageInfo]       = useState(null)
+  const [repos, setRepos]               = useState([])
+  const [pageInfo, setPageInfo]         = useState(null)
   const [reposLoading, setReposLoading] = useState(false)
-  const [reposError, setReposError]   = useState(null)
+  const [reposError, setReposError]     = useState(null)
 
   // ── Tracked username (needed by loadMoreRepos) ────────────────
   const [currentLogin, setCurrentLogin] = useState(null)
@@ -49,7 +49,6 @@ export function useGitHubSearch() {
       const data = await graphqlFetch(GET_USER, { login: trimmed })
 
       if (!data.user) {
-        // GitHub returns null for user if the username doesn't exist
         throw new Error(`No GitHub user found for "${trimmed}"`)
       }
 
@@ -66,7 +65,6 @@ export function useGitHubSearch() {
       const data = await graphqlFetch(GET_REPOS, {
         login: trimmed,
         first: REPOS_PER_PAGE,
-        // No `after` on the first page
       })
 
       if (!data.user) return
@@ -98,7 +96,7 @@ export function useGitHubSearch() {
       const data = await graphqlFetch(GET_REPOS, {
         login: currentLogin,
         first: REPOS_PER_PAGE,
-        after: pageInfo.endCursor,   // ← this is the cursor from the last page
+        after: pageInfo.endCursor,
       })
 
       if (!data.user) return
@@ -113,6 +111,21 @@ export function useGitHubSearch() {
     } finally {
       setReposLoading(false)
     }
+  }
+
+
+  // ── Action 3: reset ───────────────────────────────────────────
+  //
+  // Clears all state and returns the app to the landing page.
+  // Called by the "← Home" button and the header title click.
+  //
+  function reset() {
+    setUserData(null)
+    setUserError(null)
+    setRepos([])
+    setPageInfo(null)
+    setReposError(null)
+    setCurrentLogin(null)
   }
 
 
@@ -134,5 +147,6 @@ export function useGitHubSearch() {
     // Actions
     searchUser,
     loadMoreRepos,
+    reset,
   }
 }
