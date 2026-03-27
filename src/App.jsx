@@ -1,5 +1,5 @@
 import { useGitHubSearch } from './hooks/useGitHubSearch'
-import { SearchBar, ProfileCard, RepoList } from './components'
+import { SearchBar, ProfileCard, RepoList, FeaturedProfiles } from './components'
 
 function App() {
   const {
@@ -14,6 +14,8 @@ function App() {
     loadMoreRepos,
   } = useGitHubSearch()
 
+  const isEmptyState = !userData && !userLoading && !userError && !reposLoading && repos.length === 0
+
   return (
     <div className="app">
       <header className="app-header">
@@ -26,6 +28,10 @@ function App() {
           onSearch={searchUser}
           isLoading={userLoading}
         />
+
+        {isEmptyState && (
+          <FeaturedProfiles onSelect={searchUser} />
+        )}
 
         {userError && (
           <div className="error-message">

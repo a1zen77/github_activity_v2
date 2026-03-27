@@ -1,0 +1,97 @@
+/* FeaturedProfiles.css */
+
+.featured {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-8) 0;
+  animation: fadeIn 300ms ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.featured-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-subtle);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+  width: 100%;
+}
+
+/* ── Individual card ── */
+.featured-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: center;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-base),
+    transform var(--transition-base),
+    background-color var(--transition-base);
+}
+
+.featured-card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-3px);
+  background-color: var(--color-accent-dim);
+}
+
+.featured-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  transition: border-color var(--transition-base);
+}
+
+.featured-card:hover .featured-avatar {
+  border-color: var(--color-accent);
+}
+
+.featured-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.featured-name {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.featured-login {
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+}
+
+.featured-description {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: 1.4;
+  margin-top: var(--space-1);
+}
+
+@media (max-width: 700px) {
+  .featured-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 400px) {
+  .featured-grid { grid-template-columns: 1fr; }
+}
